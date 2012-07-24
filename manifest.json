@@ -1,0 +1,19 @@
+{
+	"BundleType": "Application",
+	"BundleIdentifier": "spotscrob",
+	"AppIcon": {
+		"36x18": "tutorial.png"
+	},
+	"AppName": {
+		"en": "SpotScrob"
+	},
+	"SupportedLanguages": [
+		"en"
+	],
+	"RequiredPermissions": [
+		"http://spotted.eldergods.com",
+		"https://spotted.eldergods.com",
+		"http://ws.audioscrobbler.com",
+		"https://ws.audioscrobbler.com"
+	]
+}

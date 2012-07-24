@@ -1,0 +1,17 @@
+{
+	"name": "spotted-scrobble",
+	"description": "enhanced scrobbling for Spotify",
+	"version": "1.0.0",
+	"keywords": ["spotify", "scrobble", "scrobbler"],
+	"maintainers": [{
+		"name": "rektide de la faye",
+		"email": "rektide@voodoowarez.com"
+	}],
+	"homepage": "http://cgit.voodoowarez.com/spotted-scrobble",
+	"implements": ["CommonJS/Modules/1.0"],
+	"engines": {"spotify": ">=0.0.1"},
+	"dependencies": {
+		"nd5": "git://github.com/socialtables/nd5.git#2fc59282371219f039dca36c60116a589c30ee0c"
+	},
+	"repository": {"type": "git", "url": "http://cgit.voodoowarez.com/spotted-scrobble"}
+}

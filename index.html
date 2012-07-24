@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My First App</title>
+	<link rel="stylesheet" href="sp://import/css/adam.css">
+	<link rel="stylesheet" href="spot-scrob.css">
+</head>
+<body onload="sp = getSpotifyApi(1); tutorial = sp.require('spot-scrob'); tutorial.init();">
+<div style="width:400px; margin: 0 auto;">
+
+<h1 id="header">SpotScrob</h1>
+<p>Enhanced Scrobbling service that passes along Spotify links</p>
+<br/>
+<hr/>
+
+<input type="checkbox" name="run" id="run" value="run" checked="checked" class="checkbox"/>
+<label for="enable">Enable Scrobbling</label>
+<br/>
+<input type="checkbox" name="spotted" id="spotted" value="spotted" checked="checked" class="checkbox"/>
+<label for="spotted">Enhance with Spotted data</label>
+<br/>
+<br/>
+
+<div class="fl">
+	<input type="text" name="user" id="user" value=""/>
+	<label for="user">User</label>
+	<br/>
+
+	<input type="text" name="pw" id="pw" value=""/>
+	<label for="user">Password</label>
+	<br/>
+	<br/>
+</div>
+
+<div class="fl">
+	<input type="text" name="server" id="server" value="https://ws.audioscrobbler.com/2.0/"/>
+	<label for="server">Server</label>
+	<br/>
+	<br/>
+</div>
+
+</div>
+
+<div style="display:none;" id="textPurifier"/>
+</body>
+</html>
