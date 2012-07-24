@@ -12,7 +12,7 @@ var SETTINGS= ["run", "spotted", "user", "pw", "server"],
   SETTING_VALUE= "value",
   SETTING_CHECK= "checked",
   SETTING_SLOT= [SETTING_CHECK, SETTING_CHECK, SETTING_VALUE, SETTING_VALUE, SETTING_VALUE],
-  WAIT_DURATION= 6*1000,
+  WAIT_DURATION= 90*1000,
   WAIT_STANDOFF= 600
 
 exports.init = init
@@ -129,6 +129,9 @@ function bindSettings(){
 */
 function scrobbleWatcher(){
 	player.observe(models.EVENT.CHANGE, function(e){
+		if(!fetchSetting("run")){
+			return
+		}
 		// track change event
 		if(e.data.curtrack == true){
 			// capture the track
