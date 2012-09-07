@@ -18,7 +18,7 @@ var SETTINGS= ["run", "spotted", "user", "pw", "server"],
   SETTING_VALUE= "value",
   SETTING_CHECK= "checked",
   SETTING_SLOT= [SETTING_CHECK, SETTING_CHECK, SETTING_VALUE, SETTING_VALUE, SETTING_VALUE],
-  WAIT_DURATION= 90*1000,
+  WAIT_DURATION= 12*1000,
   WAIT_STANDOFF= 600
 
 exports.init = init
@@ -204,10 +204,23 @@ function trackToScrobble(track,timestamp){
 
 	// extended parameters
 	if(fetchSetting("spotted")){
-		params.artistUri= track.album.artist.uri
+		params.image= textPurify(track.image)
 		params.trackUri= track.uri
 		params.albumUri= track.album.uri
+		if(track.album.image != track.image)
+			params.trackImage= track.album.image
+		var artists= [], artistUris= []
+		for(var i in track.artists){
+			var artist= track.artists[i].data
+			artists.push(artist.name)
+			artistUris.push(artist.uri)
+		}
+		params.artists= textPurify(JSON.stringify(artists))
+		params.artistUris= textPurify(JSON.stringify(artistUris))
 		params.spotifyUserId= models.session.anonymousUserID
+		if(track.starred)
+			params.starred= 1
+		params.popularity= track.popularity
 	}
 
 	return params
@@ -300,5 +313,5 @@ function textPurify(impure){
 		return impure.decodeForText()
 	}
 	elPurifier.innerHTML= impure
-	return elPurifier.innerText
+	return encodeURIComponent(elPurifier.innerText)
 }
