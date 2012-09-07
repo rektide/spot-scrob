@@ -207,6 +207,7 @@ function trackToScrobble(track,timestamp){
 		params.image= textPurify(track.image)
 		params.trackUri= track.uri
 		params.albumUri= track.album.uri
+		params.albumArtistUri= track.album.artist.uri
 		if(track.album.image != track.image)
 			params.trackImage= track.album.image
 		var artists= [], artistUris= []
