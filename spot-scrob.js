@@ -1,11 +1,17 @@
 // spotify
-var sp= getSpotifyApi(1),
-  models= sp.require("sp://import/scripts/api/models"),
+var sp= getSpotifyApi(1)
+if(typeof require == "undefined"){
+	function require(mod){
+		return sp.require(mod)
+	}
+}
+
+var models= require("sp://import/scripts/api/models"),
   player= models.player
 
 // requires
-var nd5= sp.require("lib/nd5").md5,
-  auth= sp.require("auth")
+var nd5= require("lib/nd5").md5,
+  auth= require("auth")
 
 // consts
 var SETTINGS= ["run", "spotted", "user", "pw", "server"],
@@ -217,8 +223,8 @@ function fetchLastFmSession(callback){
 	}
 
 	var cfg= fetchSettings(),
-	  authToken= nd5(cfg.user + nd5(cfg.pw))
-	  params= paramitize({method:"auth.getMobileSession",api_key:auth.key},{username:cfg.user,authToken:authToken},{format:"json"})
+	  //authToken= nd5(cfg.user + nd5(cfg.pw)),
+	  params= paramitize({method:"auth.getMobileSession",api_key:auth.key},{username:cfg.user,password:cfg.pw},{format:"json"})
 	xhrLastFm("POST",params,function(xhr){
 		var response= JSON.parse(xhr.responseText)
 		if(!response.session || !response.session.key){
@@ -230,7 +236,7 @@ function fetchLastFmSession(callback){
 		callback(lastSession)
 	},function(){
 		callback()
-	},"https://ws.audioscrobbler.com/2.0/")
+	},cfg.server)
 }
 
 /**
